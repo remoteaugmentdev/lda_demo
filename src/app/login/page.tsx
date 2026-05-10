@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { CheckCircle2, AlertTriangle, ArrowLeft } from 'lucide-react'
+import { CheckCircle2, AlertTriangle } from 'lucide-react'
 import { Logo } from '@/components/ui/Logo'
 import { LoginForm } from './LoginForm'
 
@@ -8,16 +7,16 @@ export const metadata: Metadata = { title: 'Sign In — SmartVendingOS' }
 
 const FEATURES = [
   {
-    title: 'Real-time analytics',
-    desc: 'Live revenue, expense & profit tracking across all machines',
+    title: 'Revenue & sales analytics',
+    desc: 'KPI dashboard with gross revenue, profit & loss, top products, and machine performance rankings',
   },
   {
-    title: 'Fleet & machine management',
-    desc: 'Monitor status, inventory levels, and alerts at every location',
+    title: 'Machine fleet management',
+    desc: 'Monitor machine status, manage slot inventory, and control operations across every location',
   },
   {
-    title: 'Driver trip scheduling',
-    desc: 'Optimise restocking routes and track every trip end-to-end',
+    title: 'Alerts, routes & reporting',
+    desc: 'Instant alerts for low stock, offline machines & errors — plus restocking route management and data exports',
   },
 ]
 
@@ -27,10 +26,10 @@ export default async function LoginPage({ searchParams }: Props) {
   const { reason } = await searchParams
 
   return (
-    <div className="flex min-h-screen flex-col md:flex-row">
-      {/* ── Brand panel ── */}
+    <div className="flex min-h-svh flex-col md:flex-row">
+      {/* ── Brand panel — desktop only ── */}
       <div
-        className="relative flex flex-col justify-between overflow-hidden px-8 py-10 md:min-h-screen md:w-[58%]"
+        className="relative hidden md:flex flex-col justify-between overflow-hidden px-8 py-10 md:min-h-screen md:w-[58%]"
         style={{
           background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%)',
         }}
@@ -69,20 +68,11 @@ export default async function LoginPage({ searchParams }: Props) {
       </div>
 
       {/* ── Form panel ── */}
-      <div className="relative flex flex-1 flex-col items-center justify-center bg-[var(--bg-page)] px-6 py-16 md:px-12">
-        {/* Back button */}
-        <Link 
-          href="/"
-          className="absolute left-6 top-8 flex items-center gap-2 text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors md:left-12"
-        >
-          <ArrowLeft size={16} />
-          Back to home
-        </Link>
-
+      <div className="relative flex flex-1 flex-col items-center justify-center bg-[var(--bg-page)] px-5 py-12 md:px-12">
         <div className="w-full max-w-sm">
           {/* Logo */}
           <div className="mb-8 flex justify-center">
-            <Logo size={50} className="shrink-0" />
+            <Logo size={80} className="shrink-0" />
           </div>
 
           {/* Expired banner */}

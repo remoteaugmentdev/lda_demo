@@ -193,12 +193,12 @@ export default function OrdersPage() {
           <Thead>
             <Tr>
               <Th>{t.product}</Th>
-              <Th>{t.deviceId}</Th>
+              <Th className="hidden sm:table-cell">{t.deviceId}</Th>
               <Th>{t.status}</Th>
-              <Th>{t.refund}</Th>
+              <Th className="hidden md:table-cell">{t.refund}</Th>
               <Th>{t.amount}</Th>
-              <Th>{t.payment}</Th>
-              <Th>{t.date}</Th>
+              <Th className="hidden sm:table-cell">{t.payment}</Th>
+              <Th className="hidden md:table-cell">{t.date}</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -210,14 +210,14 @@ export default function OrdersPage() {
                   className="cursor-pointer hover:bg-slate-50 transition-colors"
                   onClick={() => setSelectedOrder(o)}
                 >
-                  <Td className="font-medium max-w-[140px] truncate">{o.product}</Td>
-                  <Td className="font-mono text-xs text-[var(--text-muted)]">{o.deviceId}</Td>
+                  <Td><div className="font-medium w-[90px] truncate">{o.product}</div></Td>
+                  <Td className="hidden sm:table-cell font-mono text-xs text-[var(--text-muted)] whitespace-nowrap">{o.deviceId}</Td>
                   <Td>
                     <Badge variant={statusVariant(effectiveStatus)}>
                       {statusLabel(effectiveStatus)}
                     </Badge>
                   </Td>
-                  <Td>
+                  <Td className="hidden md:table-cell">
                     {o.refund === 'refunded' || effectiveStatus === 'refunded' ? (
                       <Badge variant="info">{t.refunded}</Badge>
                     ) : (
@@ -225,12 +225,12 @@ export default function OrdersPage() {
                     )}
                   </Td>
                   <Td className="font-semibold">{fmtEur(o.amount)}</Td>
-                  <Td>
+                  <Td className="hidden sm:table-cell">
                     <span title={o.payment}>
                       <PaymentIcon method={o.payment} />
                     </span>
                   </Td>
-                  <Td className="text-xs text-[var(--text-muted)] whitespace-nowrap">{fmtDateTime(o.date)}</Td>
+                  <Td className="hidden md:table-cell text-xs text-[var(--text-muted)] whitespace-nowrap">{fmtDateTime(o.date)}</Td>
                 </Tr>
               )
             })}

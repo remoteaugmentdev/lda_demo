@@ -253,18 +253,18 @@ export default function DashboardPage() {
             <Thead>
               <Tr>
                 <Th>{t.product}</Th>
-                <Th>{t.devices}</Th>
+                <Th className="hidden sm:table-cell">{t.devices}</Th>
                 <Th>{t.status}</Th>
-                <Th>{t.refunded}</Th>
+                <Th className="hidden sm:table-cell">{t.refunded}</Th>
                 <Th>{t.amount}</Th>
-                <Th>Time</Th>
+                <Th className="hidden md:table-cell">Time</Th>
               </Tr>
             </Thead>
             <Tbody>
               {recentOrders.map((o) => (
                 <Tr key={o.id}>
-                  <Td className="font-medium max-w-[120px] truncate">{o.product}</Td>
-                  <Td className="font-mono text-xs text-[var(--text-muted)]">{o.deviceId}</Td>
+                  <Td><div className="font-medium w-[90px] truncate">{o.product}</div></Td>
+                  <Td className="hidden sm:table-cell font-mono text-xs text-[var(--text-muted)]">{o.deviceId}</Td>
                   <Td>
                     <Badge
                       variant={
@@ -278,7 +278,7 @@ export default function DashboardPage() {
                       {o.status === 'completed' ? t.completed : o.status === 'refunded' ? t.refunded : t.failed}
                     </Badge>
                   </Td>
-                  <Td className="text-xs text-[var(--text-muted)]">
+                  <Td className="hidden sm:table-cell text-xs text-[var(--text-muted)]">
                     {o.refund === 'refunded' ? (
                       <Badge variant="info">{t.refunded}</Badge>
                     ) : (
@@ -286,7 +286,7 @@ export default function DashboardPage() {
                     )}
                   </Td>
                   <Td className="font-medium">{fmtEur(o.amount)}</Td>
-                  <Td className="text-xs text-[var(--text-muted)]">
+                  <Td className="hidden md:table-cell text-xs text-[var(--text-muted)]">
                     {fmtDate(o.date)} {fmtTime(o.date)}
                   </Td>
                 </Tr>
@@ -354,11 +354,11 @@ export default function DashboardPage() {
           <Table>
             <Thead>
               <Tr>
-                <Th>#</Th>
+                <Th className="hidden sm:table-cell">#</Th>
                 <Th>{t.name}</Th>
-                <Th>Qty Sold</Th>
+                <Th className="hidden sm:table-cell">Qty Sold</Th>
                 <Th>Revenue</Th>
-                <Th className="w-24">Progress</Th>
+                <Th className="hidden md:table-cell w-24">Progress</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -373,11 +373,11 @@ export default function DashboardPage() {
                   const pct = Math.round((p.totalRevenue / maxRev) * 100)
                   return (
                     <Tr key={p.id}>
-                      <Td className="text-[var(--text-muted)] font-medium">{i + 1}</Td>
-                      <Td className="font-medium max-w-[130px] truncate">{p.name}</Td>
-                      <Td className="text-[var(--text-muted)]">{p.totalSales}</Td>
+                      <Td className="hidden sm:table-cell text-[var(--text-muted)] font-medium">{i + 1}</Td>
+                      <Td><div className="font-medium w-[100px] truncate">{p.name}</div></Td>
+                      <Td className="hidden sm:table-cell text-[var(--text-muted)]">{p.totalSales}</Td>
                       <Td className="font-medium">{fmtEur(p.totalRevenue)}</Td>
-                      <Td>
+                      <Td className="hidden md:table-cell">
                         <div className="h-1.5 w-20 rounded-full bg-slate-100 overflow-hidden">
                           <div
                             className="h-full rounded-full bg-blue-500"
@@ -401,7 +401,7 @@ export default function DashboardPage() {
             <Thead>
               <Tr>
                 <Th>{t.machine}</Th>
-                <Th>{t.location}</Th>
+                <Th className="hidden sm:table-cell">{t.location}</Th>
                 <Th>{t.todayRevenue}</Th>
                 <Th>{t.status}</Th>
               </Tr>
@@ -409,11 +409,9 @@ export default function DashboardPage() {
             <Tbody>
               {ldaMachines.map((m) => (
                 <Tr key={m.id}>
-                  <Td className="font-medium">{m.name}</Td>
-                  <Td className="text-xs text-[var(--text-muted)] max-w-[140px] truncate">
-                    {m.location}
-                  </Td>
-                  <Td className="font-medium">{fmtEur(m.revenueToday)}</Td>
+                  <Td><div className="font-medium w-[100px] truncate">{m.name}</div></Td>
+                  <Td className="hidden sm:table-cell"><div className="text-xs text-[var(--text-muted)] w-[120px] truncate">{m.location}</div></Td>
+                  <Td className="font-medium whitespace-nowrap">{fmtEur(m.revenueToday)}</Td>
                   <Td>
                     <Badge variant={m.status === 'online' ? 'success' : m.status === 'warning' ? 'warning' : 'danger'}>
                       {m.status === 'online' ? t.online : t.offline}
@@ -429,15 +427,15 @@ export default function DashboardPage() {
 
       {/* ── Section 6: Devices Table (full width) ───────────────────────── */}
       <Card>
-        <CardHeader>
+        <CardHeader className="flex-col items-start gap-3 sm:flex-row sm:items-center">
           <CardTitle>{t.devices}</CardTitle>
-          <div className="flex items-center gap-2">
+          <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
             <input
               type="text"
               value={deviceSearch}
               onChange={(e) => setDeviceSearch(e.target.value)}
               placeholder={t.searchDevice}
-              className="h-8 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-3 text-xs text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="h-8 flex-1 min-w-0 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-3 text-xs text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             <select
               value={deviceStatusFilter}
@@ -458,12 +456,12 @@ export default function DashboardPage() {
           <Thead>
             <Tr>
               <Th>{t.name}</Th>
-              <Th>{t.location}</Th>
-              <Th>Machine Code</Th>
+              <Th className="hidden sm:table-cell">{t.location}</Th>
+              <Th className="hidden md:table-cell">Machine Code</Th>
               <Th>{t.status}</Th>
-              <Th>{t.lastPing}</Th>
+              <Th className="hidden md:table-cell">{t.lastPing}</Th>
               <Th>{t.todayRevenue}</Th>
-              <Th>{t.expiryDate}</Th>
+              <Th className="hidden lg:table-cell">{t.expiryDate}</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -476,9 +474,9 @@ export default function DashboardPage() {
             ) : (
               filteredMachines.map((m) => (
                 <Tr key={m.id}>
-                  <Td className="font-medium">{m.name}</Td>
-                  <Td className="text-xs text-[var(--text-muted)]">{m.location}</Td>
-                  <Td className="font-mono text-xs">{m.id}</Td>
+                  <Td><div className="font-medium w-[100px] truncate">{m.name}</div></Td>
+                  <Td className="hidden sm:table-cell"><div className="text-xs text-[var(--text-muted)] w-[120px] truncate">{m.location}</div></Td>
+                  <Td className="hidden md:table-cell font-mono text-xs">{m.id}</Td>
                   <Td>
                     <Badge
                       variant={
@@ -492,11 +490,11 @@ export default function DashboardPage() {
                       {m.status === 'online' ? t.online : t.offline}
                     </Badge>
                   </Td>
-                  <Td className="text-xs text-[var(--text-muted)]">
+                  <Td className="hidden md:table-cell text-xs text-[var(--text-muted)] whitespace-nowrap">
                     {fmtDate(m.lastPing)} {fmtTime(m.lastPing)}
                   </Td>
-                  <Td className="font-medium">{fmtEur(m.revenueToday)}</Td>
-                  <Td className="text-xs text-[var(--text-muted)]">
+                  <Td className="font-medium whitespace-nowrap">{fmtEur(m.revenueToday)}</Td>
+                  <Td className="hidden lg:table-cell text-xs text-[var(--text-muted)] whitespace-nowrap">
                     {new Date(m.expiryDate).toLocaleDateString('fr-FR')}
                   </Td>
                 </Tr>

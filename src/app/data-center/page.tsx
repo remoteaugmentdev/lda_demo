@@ -66,11 +66,11 @@ function MachineRanking({ t }: { t: ReturnType<typeof useTranslation> }) {
     <Table>
       <Thead>
         <Tr>
-          <Th>{t.rank}</Th>
+          <Th className="hidden sm:table-cell">{t.rank}</Th>
           <Th>{t.machine}</Th>
-          <Th>{t.location}</Th>
+          <Th className="hidden sm:table-cell">{t.location}</Th>
           <Th>{t.revenue}</Th>
-          <Th>{t.transactions}</Th>
+          <Th className="hidden md:table-cell">{t.transactions}</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -82,15 +82,15 @@ function MachineRanking({ t }: { t: ReturnType<typeof useTranslation> }) {
           .sort((a, b) => b.totalSales - a.totalSales)
           .map((m, idx) => (
             <Tr key={m.id}>
-              <Td>
+              <Td className="hidden sm:table-cell">
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-slate-600">
                   {idx + 1}
                 </span>
               </Td>
               <Td className="font-medium">{m.name}</Td>
-              <Td className="text-[var(--text-muted)]">{m.location}</Td>
+              <Td className="hidden sm:table-cell text-[var(--text-muted)]">{m.location}</Td>
               <Td className="font-semibold">€{m.totalSales.toLocaleString()}</Td>
-              <Td>{m.revenueMonthly.filter((v) => v > 0).length * 18}</Td>
+              <Td className="hidden md:table-cell">{m.revenueMonthly.filter((v) => v > 0).length * 18}</Td>
             </Tr>
           ))}
       </Tbody>
@@ -117,21 +117,21 @@ function MachineProductRanking({ t }: { t: ReturnType<typeof useTranslation> }) 
     <Table>
       <Thead>
         <Tr>
-          <Th>{t.machine}</Th>
+          <Th className="hidden sm:table-cell">{t.machine}</Th>
           <Th>{t.product}</Th>
-          <Th>{t.qtySold}</Th>
+          <Th className="hidden sm:table-cell">{t.qtySold}</Th>
           <Th>{t.revenue}</Th>
-          <Th>% of Machine</Th>
+          <Th className="hidden md:table-cell">% of Machine</Th>
         </Tr>
       </Thead>
       <Tbody>
         {rows.map(({ slot, machine, product, qtySold, revenue, pct }) => (
           <Tr key={slot.id}>
-            <Td className="text-xs text-[var(--text-muted)]">{machine?.name ?? slot.machineId}</Td>
+            <Td className="hidden sm:table-cell text-xs text-[var(--text-muted)]">{machine?.name ?? slot.machineId}</Td>
             <Td className="font-medium">{product?.name ?? slot.product}</Td>
-            <Td>{qtySold}</Td>
+            <Td className="hidden sm:table-cell">{qtySold}</Td>
             <Td>€{revenue.toFixed(2)}</Td>
-            <Td>
+            <Td className="hidden md:table-cell">
               <div className="flex items-center gap-2">
                 <div className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-100">
                   <div className="h-full rounded-full bg-blue-500" style={{ width: `${pct}%` }} />

@@ -230,7 +230,7 @@ export default function ProductsPage() {
           <Table>
             <Thead>
               <Tr>
-                <Th>S/N</Th>
+                <Th className="hidden sm:table-cell">S/N</Th>
                 <Th>{t.category}</Th>
                 <Th>{t.productCount}</Th>
                 <Th></Th>
@@ -239,7 +239,7 @@ export default function ProductsPage() {
             <Tbody>
               {filteredCategories.map((c, i) => (
                 <Tr key={c.id}>
-                  <Td className="text-[var(--text-muted)] font-mono text-xs">{i + 1}</Td>
+                  <Td className="hidden sm:table-cell text-[var(--text-muted)] font-mono text-xs">{i + 1}</Td>
                   <Td className="font-medium">{c.name}</Td>
                   <Td>
                     <Badge variant="info">{c.productCount}</Badge>

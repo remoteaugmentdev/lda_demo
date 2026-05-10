@@ -238,11 +238,11 @@ export default function SiretMappingPage() {
                 />
               </Th>
               <Th>{t.product}</Th>
-              <Th>{t.category}</Th>
-              <Th>Machine IDs</Th>
-              <Th>{t.aisleCode}</Th>
-              <Th>{t.siretId}</Th>
-              <Th>{t.producer}</Th>
+              <Th className="hidden md:table-cell">{t.category}</Th>
+              <Th className="hidden lg:table-cell">Machine IDs</Th>
+              <Th className="hidden lg:table-cell">{t.aisleCode}</Th>
+              <Th className="hidden sm:table-cell">{t.siretId}</Th>
+              <Th className="hidden md:table-cell">{t.producer}</Th>
               <Th>{t.status}</Th>
               <Th>{t.actions}</Th>
             </Tr>
@@ -270,24 +270,24 @@ export default function SiretMappingPage() {
                       )}>
                         {p.name.charAt(0)}
                       </div>
-                      <span className="font-medium text-sm">{p.name}</span>
+                      <div className="font-medium text-sm w-[90px] sm:w-auto truncate sm:overflow-visible sm:whitespace-normal">{p.name}</div>
                     </div>
                   </Td>
-                  <Td>
+                  <Td className="hidden md:table-cell">
                     <Badge variant="default">{p.category}</Badge>
                   </Td>
-                  <Td>
+                  <Td className="hidden lg:table-cell">
                     <div className="flex flex-col gap-0.5">
                       {p.machines.map((mid) => (
                         <span key={mid} className="font-mono text-xs text-[var(--text-muted)]">{mid}</span>
                       ))}
                     </div>
                   </Td>
-                  <Td className="font-mono text-xs">{p.aisleCode}</Td>
-                  <Td className="font-mono text-xs text-[var(--text-muted)]">
+                  <Td className="hidden lg:table-cell font-mono text-xs">{p.aisleCode}</Td>
+                  <Td className="hidden sm:table-cell font-mono text-xs text-[var(--text-muted)]">
                     {p.siret ? maskSiret(p.siret) : <span className="italic">—</span>}
                   </Td>
-                  <Td className="text-sm">{p.producer ?? <span className="italic text-[var(--text-muted)]">—</span>}</Td>
+                  <Td className="hidden md:table-cell text-sm">{p.producer ?? <span className="italic text-[var(--text-muted)]">—</span>}</Td>
                   <Td>
                     <Badge variant={mappingVariant(effectiveStatus)}>
                       {mappingBadgeLabel(effectiveStatus)}
@@ -324,11 +324,11 @@ export default function SiretMappingPage() {
         <Table>
           <Thead>
             <Tr>
-              <Th>{t.machine}</Th>
-              <Th>{t.slot}</Th>
+              <Th className="hidden sm:table-cell">{t.machine}</Th>
+              <Th className="hidden sm:table-cell">{t.slot}</Th>
               <Th>{t.product}</Th>
               <Th>{t.labelStatus}</Th>
-              <Th>{t.lastPushed}</Th>
+              <Th className="hidden md:table-cell">{t.lastPushed}</Th>
               <Th>{t.actions}</Th>
             </Tr>
           </Thead>
@@ -338,17 +338,17 @@ export default function SiretMappingPage() {
               const isRepushing  = repushingIds.includes(p.id)
               return (
                 <Tr key={p.id}>
-                  <Td className="font-mono text-xs text-[var(--text-muted)]">
+                  <Td className="hidden sm:table-cell font-mono text-xs text-[var(--text-muted)]">
                     {p.machines[0] ?? '—'}
                   </Td>
-                  <Td className="font-mono text-xs">{p.aisleCode}</Td>
+                  <Td className="hidden sm:table-cell font-mono text-xs">{p.aisleCode}</Td>
                   <Td className="font-medium text-sm">{p.name}</Td>
                   <Td>
                     <Badge variant={eslVariant(effectiveEsl)}>
                       {eslLabel(effectiveEsl)}
                     </Badge>
                   </Td>
-                  <Td className="text-xs text-[var(--text-muted)]">
+                  <Td className="hidden md:table-cell text-xs text-[var(--text-muted)]">
                     {fmtDate(p.eslLastPushed)}
                   </Td>
                   <Td>

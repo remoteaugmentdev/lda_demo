@@ -252,13 +252,13 @@ export default function UsersPage() {
           <Thead>
             <Tr>
               <Th>{t.name}</Th>
-              <Th>Email</Th>
+              <Th className="hidden sm:table-cell">Email</Th>
               <Th>{t.role}</Th>
-              <Th>{t.zone}</Th>
-              <Th>{t.assignedMachines}</Th>
-              <Th>SIRET</Th>
+              <Th className="hidden md:table-cell">{t.zone}</Th>
+              <Th className="hidden md:table-cell">{t.assignedMachines}</Th>
+              <Th className="hidden lg:table-cell">SIRET</Th>
               <Th>{t.status}</Th>
-              <Th>{t.lastActive}</Th>
+              <Th className="hidden lg:table-cell">{t.lastActive}</Th>
               <Th></Th>
             </Tr>
           </Thead>
@@ -268,16 +268,16 @@ export default function UsersPage() {
                 <Td>
                   <div className="flex items-center gap-2">
                     <AvatarCircle initials={user.initials} colorIndex={idx} />
-                    <span className="font-medium">{user.name}</span>
+                    <div className="font-medium w-[80px] sm:w-auto truncate sm:overflow-visible sm:whitespace-normal">{user.name}</div>
                   </div>
                 </Td>
-                <Td className="text-[var(--text-muted)]">{user.email}</Td>
+                <Td className="hidden sm:table-cell text-[var(--text-muted)]">{user.email}</Td>
                 <Td>{roleBadge(user.role)}</Td>
-                <Td className="text-[var(--text-muted)]">{user.zone}</Td>
-                <Td>{user.assignedMachines}</Td>
-                <Td className="font-mono text-xs">{maskSiret(user.siret)}</Td>
+                <Td className="hidden md:table-cell text-[var(--text-muted)]">{user.zone}</Td>
+                <Td className="hidden md:table-cell">{user.assignedMachines}</Td>
+                <Td className="hidden lg:table-cell font-mono text-xs">{maskSiret(user.siret)}</Td>
                 <Td>{statusBadge(user.status)}</Td>
-                <Td className="text-xs text-[var(--text-muted)]">
+                <Td className="hidden lg:table-cell text-xs text-[var(--text-muted)]">
                   {formatLastActive(user.lastActive)}
                 </Td>
                 <Td>
