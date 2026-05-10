@@ -134,7 +134,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-6">
 
         {/* 1 – Gross Revenue */}
-        <Link href="/admin/finance" className="block">
+        <Link href="/reports" className="block">
           <div className="rounded-xl bg-[var(--bg-card)] p-4 shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 border-t-2 border-blue-500">
             <p className="text-xs font-medium text-[var(--text-muted)] mb-1">{t.grossRevenue}</p>
             <p className="text-xl font-bold text-[var(--text-primary)]">1 240,50 €</p>
@@ -143,7 +143,7 @@ export default function DashboardPage() {
         </Link>
 
         {/* 2 – Active Machines */}
-        <Link href="/admin/devices" className="block">
+        <Link href="/machines" className="block">
           <div className="rounded-xl bg-[var(--bg-card)] p-4 shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 border-t-2 border-emerald-500">
             <p className="text-xs font-medium text-[var(--text-muted)] mb-1">{t.activeMachines}</p>
             <p className="text-xl font-bold text-[var(--text-primary)]">2 / 3 online</p>
@@ -152,7 +152,7 @@ export default function DashboardPage() {
         </Link>
 
         {/* 3 – Products Mapped */}
-        <Link href="/admin/products" className="block">
+        <Link href="/products" className="block">
           <div className="rounded-xl bg-[var(--bg-card)] p-4 shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 border-t-2 border-blue-400">
             <p className="text-xs font-medium text-[var(--text-muted)] mb-1">{t.productsMapped}</p>
             <p className="text-xl font-bold text-[var(--text-primary)]">24 / 30</p>
@@ -161,7 +161,7 @@ export default function DashboardPage() {
         </Link>
 
         {/* 4 – Pending SIRETs */}
-        <Link href="/admin/producers" className="block">
+        <Link href="/siret-mapping" className="block">
           <div className="rounded-xl bg-[var(--bg-card)] p-4 shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 border-t-2 border-amber-400">
             <p className="text-xs font-medium text-[var(--text-muted)] mb-1">{t.pendingSirets}</p>
             <p className="text-xl font-bold text-[var(--text-primary)]">6</p>
@@ -170,7 +170,7 @@ export default function DashboardPage() {
         </Link>
 
         {/* 5 – Active Producers */}
-        <Link href="/admin/producers" className="block">
+        <Link href="/siret-mapping" className="block">
           <div className="rounded-xl bg-[var(--bg-card)] p-4 shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 border-t-2 border-emerald-400">
             <p className="text-xs font-medium text-[var(--text-muted)] mb-1">{t.activeProducers}</p>
             <p className="text-xl font-bold text-[var(--text-primary)]">8</p>
@@ -179,7 +179,7 @@ export default function DashboardPage() {
         </Link>
 
         {/* 6 – Low Stock Alerts */}
-        <Link href="/admin/inventory" className="block">
+        <Link href="/inventory" className="block">
           <div className="rounded-xl bg-[var(--bg-card)] p-4 shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 border-t-2 border-red-500">
             <p className="text-xs font-medium text-[var(--text-muted)] mb-1">{t.lowStockAlerts}</p>
             <p className="text-xl font-bold text-[var(--text-primary)]">4 slots</p>
@@ -243,7 +243,7 @@ export default function DashboardPage() {
           <CardHeader>
             <CardTitle>{t.recentOrders}</CardTitle>
             <Link
-              href="/admin/orders"
+              href="/orders"
               className="text-xs font-medium text-blue-600 hover:text-blue-800 transition-colors"
             >
               {t.viewAllOrders}
