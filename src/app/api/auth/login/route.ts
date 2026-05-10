@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     const role = profile?.role ?? 'demo'
 
     // Sign a JWT session
-    const token = await signSession({ userId: user.id, email: user.email, role })
+    const token = await signSession({ userId: user.id, email: '', role })
 
     const response = NextResponse.json({ ok: true })
     response.cookies.set(COOKIE_NAME, token, {

@@ -7,8 +7,9 @@ export async function GET() {
   if (!session) return NextResponse.json({ user: null })
 
   const { rows } = await pool.query(
-    `SELECT p.role, p.expires_at, p.label
+    `SELECT p.role, p.expires_at, p.label, u.email
      FROM public.profiles p
+     JOIN auth.users u ON u.id = p.id
      WHERE p.id = $1`,
     [session.userId]
   )
@@ -17,7 +18,7 @@ export async function GET() {
   return NextResponse.json({
     user: {
       id: session.userId,
-      email: session.email,
+      email: profile?.email ?? session.email,
       role: profile?.role ?? session.role,
       expires_at: profile?.expires_at ?? null,
       label: profile?.label ?? null,
